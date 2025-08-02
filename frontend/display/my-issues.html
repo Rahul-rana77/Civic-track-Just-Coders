@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Issue Details</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .issue-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 4px;
+      color: #fff;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .status.in-progress {
+      background-color: #ffcc00;
+      color: #000;
+    }
+
+    .status.reported {
+      background-color: #ff4444;
+    }
+
+    h1 {
+      margin-top: 15px;
+    }
+
+    .info {
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .not-found {
+      text-align: center;
+      color: #888;
+      padding: 40px;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="issueContainer">
+    <!-- Issue content will be rendered here -->
+  </div>
+
+  <script>
+    const issues = [
+      {
+        id: 1,
+        title: "Streetlight not working",
+        status: "In Progress",
+        date: "Aug 14",
+        category: "Streetlight",
+        location: "2.9 km near Park Bridge",
+        image: "https://via.placeholder.com/800x250?text=Streetlight+Issue",
+        description: "Streetlights have been out for 2 days, causing safety concerns in the area."
+      },
+      {
+        id: 2,
+        title: "Pothole on main road",
+        status: "Reported",
+        date: "Jun 23",
+        category: "Pothole",
+        location: "1.1 km on CG Road",
+        image: "https://via.placeholder.com/800x250?text=Pothole+Issue",
+        description: "Large pothole causing traffic jams and potential accidents. Needs urgent fixing."
+      },
+      {
+        id: 3,
+        title: "Garbage not collected",
+        status: "Reported",
+        date: "Jan 25",
+        category: "Garbage",
+        location: "1.1 km in IT Society",
+        image: "https://via.placeholder.com/800x250?text=Garbage+Issue",
+        description: "Garbage bins overflowing. Not collected for 3 days. Area smells bad and attracts animals."
+      }
+    ];
+
+    function getIssueIdFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      return parseInt(params.get("id"));
+    }
+
+    function renderIssueDetails() {
+      const id = getIssueIdFromURL();
+      const issue = issues.find(item => item.id === id);
+
+      const container = document.getElementById("issueContainer");
+
+      if (!issue) {
+        container.innerHTML = `
+          <div class="not-found">
+            <h2>Issue Not Found</h2>
+            <p>The issue ID you're looking for doesn't exist.</p>
+            <a class="back-link" href="index.html">← Back to Issues</a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <img class="issue-image" src="${issue.image}" alt="${issue.title}" />
+        <h1>${issue.title}</h1>
+        <span class="status ${issue.status.toLowerCase().replace(' ', '-')}">${issue.status}</span>
+        <div class="info">
+          <p><strong>Date Reported:</strong> ${issue.date}</p>
+          <p><strong>Category:</strong> ${issue.category}</p>
+          <p><strong>Location:</strong> ${issue.location}</p>
+          <p><strong>Description:</strong><br>${issue.description}</p>
+        </div>
+        <a class="back-link" href="index.html">← Back to All Issues</a>
+      `;
+    }
+
+    window.onload = renderIssueDetails;
+  </script>
+</body>
+</html>

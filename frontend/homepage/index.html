@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CivicTrack - Issues</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a, nav button {
+      margin-left: 15px;
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #0077cc;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      background: #ffffff;
+      border-bottom: 1px solid #ccc;
+      flex-wrap: wrap;
+    }
+
+    .filters select, .filters input {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .issue-card {
+      background-color: white;
+      padding: 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s;
+    }
+
+    .issue-card:hover {
+      transform: scale(1.02);
+    }
+
+    .issue-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .issue-details {
+      padding: 15px;
+    }
+
+    .status {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .status.in-progress {
+      background-color: #ffcc00;
+    }
+
+    .status.reported {
+      background-color: #ff6666;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .pagination .page-number,
+    .pagination button {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 0 4px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #eee;
+    }
+
+    .pagination .active {
+      background-color: #673ab7;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CivicTrack</h1>
+    <nav>
+      <a href="index.html">Show All Issues</a>
+      <a href="my-issues.html">My Issues</a>
+      <a href="report-issue.html">Report New Issue</a>
+    </nav>
+  </header>
+
+  <section class="filters">
+    <select id="categoryFilter">
+      <option>Category</option>
+      <option>Streetlight</option>
+      <option>Pothole</option>
+      <option>Garbage</option>
+    </select>
+
+    <select id="statusFilter">
+      <option>Status</option>
+      <option>In Progress</option>
+      <option>Reported</option>
+    </select>
+
+    <select id="distanceFilter">
+      <option>Distance</option>
+      <option>1 km</option>
+      <option>5 km</option>
+      <option>10 km</option>
+    </select>
+
+    <input type="text" id="searchBar" placeholder="Search Issues" />
+    <button onclick="searchIssues()">Search</button>
+  </section>
+
+  <main id="issuesContainer" class="grid-container">
+    <!-- Issues will be dynamically inserted here -->
+  </main>
+
+  <footer>
+    <div class="pagination">
+      <button >&lt;</button>
+      <span class="page-number active">1</span>
+      <span class="page-number">2</span>
+      <span class="page-number">3</span>
+      <span class="page-number">4</span>
+      <span class="page-number">...</span>
+      <span class="page-number">11</span>
+      <button>&gt;</button>
+    </div>
+  </footer>
+
+  <script>
+    const issues = [
+      {
+        id: 1,
+        title: "Streetlight not working",
+        status: "In Progress",
+        date: "Aug 14",
+        category: "Streetlight",
+        location: "2.9 km",
+        image: "https://via.placeholder.com/280x120?text=Streetlight"
+      },
+      {
+        id: 2,
+        title: "Pothole on main road",
+        status: "Reported",
+        date: "Jun 23",
+        category: "Pothole",
+        location: "1.1 km",
+        image: "https://via.placeholder.com/280x120?text=Pothole"
+      },
+      {
+        id: 3,
+        title: "Garbage not collected",
+        status: "Reported",
+        date: "Jan 25",
+        category: "Garbage",
+        location: "1.1 km",
+        image: "https://via.placeholder.com/280x120?text=Garbage"
+      }
+    ];
+
+    function renderIssues() {
+      const container = document.getElementById("issuesContainer");
+      container.innerHTML = "";
+
+      issues.forEach(issue => {
+        const card = document.createElement("a");
+        card.className = "issue-card";
+        card.href = `issue.html?id=${issue.id}`; // redirects to issue detail page
+        card.innerHTML = `
+          <img src="${issue.image}" alt="${issue.category}">
+          <div class="issue-details">
+            <h4>${issue.title}</h4>
+            <p>Status: <span class="status ${issue.status.toLowerCase().replace(' ', '-')}">${issue.status}</span></p>
+            <p>Date: ${issue.date}</p>
+            <p>Location: ${issue.location}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function searchIssues() {
+      const query = document.getElementById("searchBar").value.toLowerCase();
+      const filtered = issues.filter(issue =>
+        issue.title.toLowerCase().includes(query) ||
+        issue.category.toLowerCase().includes(query)
+      );
+      displayFilteredIssues(filtered);
+    }
+
+    function displayFilteredIssues(filteredIssues) {
+      const container = document.getElementById("issuesContainer");
+      container.innerHTML = "";
+
+      filteredIssues.forEach(issue => {
+        const card = document.createElement("a");
+        card.className = "issue-card";
+        card.href = `issue.html?id=${issue.id}`;
+        card.innerHTML = `
+          <img src="${issue.image}" alt="${issue.category}">
+          <div class="issue-details">
+            <h4>${issue.title}</h4>
+            <p>Status: <span class="status ${issue.status.toLowerCase().replace(' ', '-')}">${issue.status}</span></p>
+            <p>Date: ${issue.date}</p>
+            <p>Location: ${issue.location}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (filteredIssues.length === 0) {
+        container.innerHTML = "<p>No issues found.</p>";
+      }
+    }
+
+    window.onload = renderIssues;
+  </script>
+</body>
+</html>
+
