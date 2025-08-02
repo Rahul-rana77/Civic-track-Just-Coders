@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#issue-form{
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 60vw;
+    
+}
+input{
+    margin: 10px 20px;
+    padding: 5px;
+    font-size: large;
+    
+}
+textarea{
+    margin: 10px 20px;
+    padding: 5px;
+    height: 30%;
+    font-size: medium;
+    
+}
+select{
+    margin: 10px 20px;
+    padding: 5px;
+}
+
+#photo{
+    font-size: medium;
+}
+
+button{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(68, 255, 47);
+    color: white;
+    font-weight: 500;
+    font-size: large;
+    border:none;
+    width:40%;
+    margin: 20px;
+}
