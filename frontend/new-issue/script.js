@@ -25,7 +25,7 @@ document.getElementById('issue-form').addEventListener('submit', async function 
 });
 
 function back() {
-  window.location.href = "/Civic-track-Just-Coders/frontend/index.html";
+  window.location.href = "/Civic-track-Just-Coders/frontend/homepage/index.html";
 }
 
 button.addEventListener("click",back);
