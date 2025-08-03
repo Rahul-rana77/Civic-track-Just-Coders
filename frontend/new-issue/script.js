@@ -1,3 +1,5 @@
+let button = document.getElementById("btn");
+
 document.getElementById('issue-form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
@@ -21,3 +23,9 @@ document.getElementById('issue-form').addEventListener('submit', async function 
     console.error('Error:', error);
   }
 });
+
+function back() {
+  window.location.href = "/Civic-track-Just-Coders/frontend/index.html";
+}
+
+button.addEventListener("click",back);

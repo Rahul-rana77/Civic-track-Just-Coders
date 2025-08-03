@@ -19,7 +19,7 @@ if (!fs.existsSync(DB_PATH)) {
 }
 
 // ✅ Serve uploaded images
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ✅ Multer config
 const storage = multer.diskStorage({
