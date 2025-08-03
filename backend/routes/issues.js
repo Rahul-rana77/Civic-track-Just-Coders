@@ -6,11 +6,14 @@ const { getIssues, createIssue, updateIssueStatus } = require('../controllers/is
 // Configure multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, './uploads'); // save to uploads/
+    const uploadDir = path.join(__dirname, '../uploads');
+    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + file.originalname;
-    cb(null, uniqueSuffix);
+    const originalName = file.originalname.replace(/\s+/g, '_'); // ✅ replace spaces
+    const uniqueName = Date.now() + '-' + originalName;
+    cb(null, uniqueName);
   }
 });
 const upload = multer({ storage: storage });

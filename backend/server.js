@@ -29,7 +29,8 @@ const storage = multer.diskStorage({
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    const uniqueName = Date.now() + '-' + file.originalname;
+    const originalName = file.originalname.replace(/\s+/g, '_'); // ✅ replace spaces
+    const uniqueName = Date.now() + '-' + originalName;
     cb(null, uniqueName);
   }
 });
@@ -49,7 +50,7 @@ function saveIssue(issue) {
 }
 
 // ✅ API: Submit issue
-app.post('/api/issues', upload.single('photo'), (req, res) => {
+app.post('/api/issues', upload.array('photo',5), (req, res) => {
   const issue = {
     id: Date.now(),
     title: req.body.title,
@@ -57,7 +58,7 @@ app.post('/api/issues', upload.single('photo'), (req, res) => {
     location: req.body.location,
     category: req.body.category,
     isAnonymous: req.body.isAnonymous === 'true',
-    photoUrl: req.file ? `/uploads/${req.file.filename}` : null,
+    photoUrl: req.file ? `/Civic-track-Just-Coders/uploads/${req.file.filename}` : null,
     createdAt: new Date(),
     status: 'Reported'
   };

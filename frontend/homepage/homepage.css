@@ -1,0 +1,114 @@
+body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a, nav button {
+      margin-left: 15px;
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #0077cc;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      background: #ffffff;
+      border-bottom: 1px solid #ccc;
+      flex-wrap: wrap;
+    }
+
+    .filters select, .filters input {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .issue-card {
+      background-color: white;
+      padding: 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s;
+    }
+
+    .issue-card:hover {
+      transform: scale(1.02);
+    }
+
+    .issue-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .issue-details {
+      padding: 15px;
+    }
+
+    .status {
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .status.in-progress {
+      background-color: #ffcc00;
+    }
+
+    .status.reported {
+      background-color: #ff6666;
+    }
+
+    footer {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .pagination .page-number,
+    .pagination button {
+      display: inline-block;
+      padding: 8px 12px;
+      margin: 0 4px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #eee;
+    }
+
+    .pagination .active {
+      background-color: #673ab7;
+      color: white;
+    }
