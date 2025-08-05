@@ -1,114 +1,190 @@
+/* Reset + Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f7f7f7;
-      margin: 0;
-      padding: 0;
-    }
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
 
-    header {
-      background-color: #fff;
-      padding: 20px;
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* Header */
+header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
-    nav a, nav button {
-      margin-left: 15px;
-      text-decoration: none;
-      background: none;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-      color: #0077cc;
-    }
+header h1 {
+  font-size: 1.5rem;
+  color: #673ab7;
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+/* Navigation */
+nav {
+  display: flex;
+  gap: 1rem;
+}
 
-    .filters {
-      display: flex;
-      gap: 10px;
-      padding: 15px;
-      background: #ffffff;
-      border-bottom: 1px solid #ccc;
-      flex-wrap: wrap;
-    }
+nav a {
+  color: #673ab7;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    .filters select, .filters input {
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
+nav a:hover {
+  color: #311b92;
+  text-decoration: underline;
+}
 
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
 
-    .issue-card {
-      background-color: white;
-      padding: 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s;
-    }
+.filters select,
+.filters input {
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
 
-    .issue-card:hover {
-      transform: scale(1.02);
-    }
+.filters button {
+  background-color: #673ab7;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .issue-card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
+.filters button:hover {
+  background-color: #5e35b1;
+}
 
-    .issue-details {
-      padding: 15px;
-    }
+/* Cards */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
 
-    .status {
-      font-weight: bold;
-      padding: 5px 10px;
-      border-radius: 4px;
-      display: inline-block;
-      margin-top: 8px;
-    }
+.issue-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
 
-    .status.in-progress {
-      background-color: #ffcc00;
-    }
+.issue-card:hover {
+  transform: translateY(-5px);
+}
 
-    .status.reported {
-      background-color: #ff6666;
-    }
+.issue-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
 
-    footer {
-      padding: 20px;
-      text-align: center;
-    }
+.issue-details {
+  padding: 1rem;
+}
 
-    .pagination .page-number,
-    .pagination button {
-      display: inline-block;
-      padding: 8px 12px;
-      margin: 0 4px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #eee;
-    }
+.issue-details h4 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
 
-    .pagination .active {
-      background-color: #673ab7;
-      color: white;
-    }
+.status {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-top: 0.5rem;
+}
+
+.status.reported {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.status.in-progress {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+/* Footer + Pagination */
+footer {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pagination button,
+.pagination .page-number {
+  padding: 0.5rem 1rem;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination .active {
+  background-color: #673ab7;
+  color: white;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .filters input,
+  .filters select,
+  .filters button {
+    width: 100%;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+}
