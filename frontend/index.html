@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Signup - CivicTrack</title>
-  <link rel="stylesheet" href="signup.css" />
+  <link rel="stylesheet" href="/Civic-track-Just-Coders/frontend/signup page/signup.css" />
 </head>
 <body>
   <div class="auth-container">
@@ -13,13 +13,14 @@
       <input type="text" id="name" placeholder="Full Name" required />
       <input type="email" id="email" placeholder="Email" required />
       <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
+      <button type="submit" id="sign-up">Sign Up</button>
       <p>Already have an account? <a href="/Civic-track-Just-Coders/frontend/login page/login.html">Login</a></p>
     </form>
   </div>
-  <script src="signup.js" type="module">
+  <script src="/Civic-track-Just-Coders/frontend/signup page/signup.js" type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+    import { getAuth,
+            createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
     const firebaseConfig = {
     apiKey: "AIzaSyBOu0N08YATCslU033o0f8oJH6WsJsqdUA",

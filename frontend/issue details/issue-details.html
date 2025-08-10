@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Issue Details</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="issue-details.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <title>Issue Details</title>
 </head>
 <body>
-  <div class="container">
-    <img id="issueImage" src="" alt="Issue Image" />
-    <h2 id="issueTitle">Loading...</h2>
-    <p>Status: <span id="issueStatus" class="status"></span></p>
-    <p><strong>Category:</strong> <span id="issueCategory"></span></p>
-    <p><strong>Date:</strong> <span id="issueDate"></span></p>
-    <p><strong>Location:</strong> <span id="issueLocation"></span></p>
-    <p><strong>Description:</strong></p>
-    <p id="issueDescription"></p>
-  </div>
+  <main class="issue-layout">
+    <!-- Issue Info -->
+    <div class="issue-info">
+      <img id="issueImage" src="" alt="Issue Image" class="clickable-img"/>
+      
+      <div class="title-status-row">
+        <h2 id="issueTitle">Loading...</h2>
+        <span id="issueStatus" class="status">Reported</span>
+      </div>
+
+      <p><strong>Category:</strong> <span id="issueCategory"></span></p>
+      <p><strong>Date:</strong> <span id="issueDate"></span></p>
+      <p><strong>Location:</strong> <span id="issueLocation"></span></p>
+      <p><strong>Description:</strong></p>
+      <p id="issueDescription"></p>
+
+      <button id="upvoteBtn">👍 Confirm Issue (<span id="voteCount">0</span>)</button>
+    </div>
+
+    <!-- Map -->
+    <div class="issue-map">
+      <div id="map" style="height:300px; border-radius:8px;"></div>
+    </div>
+  </main>
+
+  <!-- Similar Issues -->
+  <section style="max-width:1200px; margin:20px auto; padding:20px;">
+    <h3>Similar Issues</h3>
+    <div id="similarIssues" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;"></div>
+  </section>
+
+  <!-- Comments -->
+  <section style="max-width:1200px; margin:20px auto; padding:20px; background:#fff; border-radius:8px;">
+    <h3>Comments</h3>
+    <div id="commentsList"></div>
+    <textarea id="commentInput" placeholder="Write a comment..." style="width:100%; padding:8px; margin-top:10px;"></textarea>
+    <button id="postCommentBtn">Post Comment</button>
+  </section>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="issue-details.js"></script>
 </body>
 </html>
